@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css">
+	<link rel="stylesheet" href="css/app-style.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/dinero.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="app.js"></script>
+	
+</head>
+<body>
+
+	<div class="app-main-layout"  id="app">
+		<div class="app-main-content">
+
+				<table class="table is-fullwidth is-striped">
+					<!--header -->
+					<thead>
+						<tr>
+							<td>No.</td>
+							<td>Description</td>
+							<td>Rate</td>
+							<td>Amount</td>
+						</tr>
+					</thead>
+					<!-- items-->
+					<tbody>
+						<!-- item-->
+						<tr v-for="item in invoice.items">
+							<td>
+								{{item.position}}
+							</td>
+							<td>
+								<div class="field control">
+									<input class="input" type="text" v-model="item.description">
+								</div>
+							</td>
+							<td>
+								<div class="field control">
+									<input class="input" type="text" v-model="item.rate">
+								</div>
+							</td>
+							<td>
+								<div class="field control">
+									<input class="input" type="number" v-model="item.amount">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+
+				<div class="app-main-block">
+					<button class="button is-rounded is-primary" v-on:click="addNewItem">Add new item</button>
+				</div>
+
+			<div class="box app-card has-text-right">
+				<p>Subtotal: {{subtotal}}</p>
+				<p>Tax: {{invoice.tax * 100}} %</p>
+				<p class="is-size-5">Total: {{total}}</p>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
